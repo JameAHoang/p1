@@ -1,0 +1,73 @@
+<div class="container">
+    <form name="form" [formGroup]="AddForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Mã sinh viên</label>
+        <input class="form-control" placeholder="Mã sinh viên" formControlName="idName"
+          [ngClass]="{'is-invalid': getIdName?.touched && getIdName?.invalid}">
+        <div class="invalid-feedback" *ngIf="getIdName?.invalid && getIdName?.touched">
+          <span *ngIf="getIdName?.errors?.required">Vui lòng nhập mã sinh viên!!</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Họ tên</label>
+        <input class="form-control" placeholder="Họ tên" formControlName="name"
+          [ngClass]="{'is-invalid': AddForm.get('name')?.touched && AddForm.get('name')?.invalid}">
+        <div class="invalid-feedback" *ngIf="getName?.invalid && getName?.touched">
+          <span *ngIf="getName?.errors?.required">Vui lòng nhập họ tên!</span>
+          <span *ngIf="getName?.errors?.minlength || getName?.errors?.maxlength">Họ tên tối thiếu 6 ký tự và tối đa
+            32 kí tự</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" placeholder="Email" formControlName="email"
+          [ngClass]="{'is-invalid': getEmail?.touched && getEmail?.invalid }">
+        <div class="invalid-feedback" *ngIf="getEmail?.invalid && getEmail?.touched">
+          <span *ngIf="getEmail?.errors?.required">Vui lòng nhập email!</span>
+          <span *ngIf="getEmail?.errors?.email">Địa chỉ email không hợp lệ!</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Số điện thoại</label>
+        <input class="form-control" placeholder="Số điện thoại" formControlName="phone"
+          [ngClass]="{'is-invalid': AddForm.get('phone')?.touched && AddForm.get('phone')?.invalid}">
+  
+        <div class="invalid-feedback" *ngIf="getPhone?.invalid && getPhone?.touched">
+          <span *ngIf="getPhone?.errors?.required">Vui lòng nhập số điện thoại!</span>
+          <span *ngIf="getPhone?.errors?.pattern">Số điện thoại phải đúng 10 số!</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <!-- <label>Giới tính</label>
+        <input class="form-control" placeholder="Giới tính" formControlName="gender"
+          [ngClass]="{'is-invalid': AddForm.get('gender')?.touched && AddForm.get('gender')?.invalid}">
+        <div class="invalid-feedback" *ngIf="getGender?.invalid && getGender?.touched">
+          <span *ngIf="getGender?.errors?.required">Vui lòng nhập giới tính!</span>
+          <span *ngIf="getGender?.errors?.minlength || getGender?.errors?.maxlength">Họ tên tối thiếu 2 ký tự và
+            tối đa
+            3 kí tự</span>
+        </div> -->
+        <!-- <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" checked formControlName="gender">
+          <label class="form-check-label">
+            Nam
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" formControlName="gender">
+          <label class="form-check-label">
+            Nữ
+          </label>
+        </div> -->
+        <label>Giới tính</label>
+        <div>
+          <input type="radio" value="Nam" formControlName="gender"> Nam
+          <input type="radio" value="Nữ" formControlName="gender"> Nữ
+  
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!AddForm.valid">Sửa</button>
+    </form>
+  
+  </div>
+  

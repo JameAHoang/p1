@@ -1,0 +1,43 @@
+<div class="container">
+  <button pButton type="button" label="Thêm sinh viên" class="p-button-info" (click)="addStudent()"></button>
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Mã sinh viên</th>
+        <th scope="col">Họ tên</th>
+        <th scope="col">Giới tính</th>
+        <th scope="col">Email</th>
+        <th scope="col">Điện thoại</th>
+        <th scope="col">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of ListStudents;let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{p.idName}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.gender}}</td>
+        <td>{{p.email}}</td>
+        <td>{{p.phone}}</td>
+        <td>
+          <button pButton type="button" class="p-button-warning btn-edit" (click)="editStudent(p.id)">Sửa</button>
+          <button pButton type="button" class="p-button-danger btn-delete" (click)="confirm2(p.id,p.name)">Xóa</button>
+        </td>
+      </tr>
+      <!-- <tr>
+        <th scope="row">1</th>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>
+          <button pButton type="button" class="p-button-warning btn-edit">Sửa</button>
+          <button pButton type="button" class="p-button-danger btn-delete">Xóa</button>
+        </td>
+      </tr> -->
+    </tbody>
+  </table>
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

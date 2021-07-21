@@ -1,0 +1,33 @@
+<!-- <div *ngIf="isLoginError" class="red-text center error-message">
+    <i class="material-icons">error</i> Incorrect username or password
+</div>
+<form  class="col s12 white" (ngSubmit)="OnSubmit(UserName.value,Password.value)">
+   <div class="row">
+     <div class="input-field col s12">
+       <i class="material-icons prefix">account_circle</i>
+       <input type="text" #UserName  name="UserName" placeholder="Username" required>
+     </div>
+   </div>
+   <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">vpn_key</i>
+        <input type="password" #Password  name="Password" placeholder="Password" required>
+      </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+          <button  class="btn-large btn-submit" type="submit">Login</button>
+        </div>
+      </div>
+</form> -->
+<div *ngIf="isLoginError" class="red-text center error-message">
+  <i class="material-icons">error</i> Incorrect username or password
+</div>
+<div class="login">
+	<h1>Login</h1>
+    <form  (ngSubmit)="OnSubmit(UserName.value,Password.value)">
+    	<input type="text" name="u" #UserName placeholder="Tên đăng nhập" required="required" />
+        <input type="password" name="p" #Password  placeholder="Mật khẩu" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Đăng nhập</button>
+    </form>
+</div>

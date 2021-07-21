@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  background-image: url("https://dean2020.edu.vn/wp-content/uploads/2019/03/anh-thien-nhien-dep-24.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
