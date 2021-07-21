@@ -12,9 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(private userAuth: AuthService,private router: Router) { }
 
   ngOnInit(): void {
-        this.userAuth.login('test@gmail.com', '123456').subscribe(
-      (res) => localStorage.setItem('auth', JSON.stringify(res))
-    );
+   
   }
 
 }
