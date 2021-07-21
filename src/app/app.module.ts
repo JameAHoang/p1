@@ -41,9 +41,10 @@ import { LoginComponent } from './login/login.component';
     MessagesModule,
     FormsModule,
 
-   
   ],
-  providers: [  
+  providers: [
+    LoginComponent,
+    // AuthService,AuthGuard ,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthTokenInterceptor,

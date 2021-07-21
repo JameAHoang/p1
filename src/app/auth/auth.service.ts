@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-
+  
   constructor(private http: HttpClient) { }
   login(email: string, password: string): Observable<AuthPayloadRes> {
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.FiREBASE_API_KEY}`;
