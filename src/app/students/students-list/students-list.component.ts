@@ -1,11 +1,21 @@
-import { response } from './../students.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Student } from '../students.model';
 import { StudentsService } from '../students.service';
-import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
+import {
+  ConfirmationService,
+  MessageService,
+  PrimeNGConfig,
+} from 'primeng/api';
 import { Message } from 'primeng/api';
 import { ToastServerity } from 'src/app/enums/toast.enum';
+import { FormControl, NgForm } from '@angular/forms';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  switchMap,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-students-list',
@@ -14,6 +24,7 @@ import { ToastServerity } from 'src/app/enums/toast.enum';
   providers: [ConfirmationService],
 })
 export class StudentsListComponent implements OnInit {
+  searchControl: FormControl = new FormControl();
   constructor(
     private router: Router,
     private Student: StudentsService,
@@ -25,7 +36,28 @@ export class StudentsListComponent implements OnInit {
   msgs: Message[] = [];
   ngOnInit() {
     this.primengConfig.ripple = true;
-    this.loadData();
+    // this.loadData();
+    this.searchByName();
+  }
+  searchByName() {
+    if (this.searchControl.value == null) {
+      this.loadData();
+    } else {
+      this.searchControl.valueChanges
+        .pipe(
+          debounceTime(500),
+          distinctUntilChanged(),
+          switchMap((data) => this.Student.getSearch(data)),
+          map((data) => data.filter((i) => i.name == this.searchControl.value))
+        )
+        .subscribe((data) => {
+          if (data.length == 0) {
+            this.loadData();
+          } else {
+            console.log(data), (this.ListStudents = data);
+          }
+        });
+    }
   }
   loadData() {
     this.Student.getStudents().subscribe(
@@ -81,6 +113,6 @@ export class StudentsListComponent implements OnInit {
     });
   }
   editStudent(studentId: string) {
-    this.router.navigate(['students','edit', studentId]);
+    this.router.navigate(['students', 'edit', studentId]);
   }
 }

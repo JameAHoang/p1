@@ -1,7 +1,11 @@
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 import { ToastModule } from 'primeng/toast';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { StudentsRoutingModule } from './students/students-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -19,6 +23,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
 import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { TeacherComponent } from './teacher/teacher.component';
+import { TeacherListComponent } from './teacher/teacher-list/teacher-list.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +36,10 @@ import { LoginComponent } from './login/login.component';
     StudentsComponent,
     HomeComponent,
     LoginComponent,
+    AdminComponent,
+    SidebarComponent,
+    TeacherComponent,
+    TeacherListComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,18 +52,16 @@ import { LoginComponent } from './login/login.component';
     ConfirmDialogModule,
     MessagesModule,
     FormsModule,
-
   ],
   providers: [
     LoginComponent,
     // AuthService,AuthGuard ,
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthTokenInterceptor,
-    multi: true
-  }
-  
-],
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthTokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

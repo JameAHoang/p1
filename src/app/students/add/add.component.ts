@@ -35,6 +35,11 @@ export class AddComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
     });
+    if (this.AddForm.controls['name'].value != '') {
+      console.log('a');
+    } else {
+      console.log('b');
+    }
   }
   onSubmit() {
     console.log('onSubmit');

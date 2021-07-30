@@ -17,12 +17,12 @@ export class LoginComponent implements OnInit {
 
   isLoginError : boolean = false;
   constructor(private userAuth: AuthService,private router: Router,) { 
-    this.currentUserSubject = new BehaviorSubject<AuthPayloadRes>(JSON.parse(localStorage.getItem('auth') as string));
-        this.currentUser = this.currentUserSubject.asObservable();
+   
   }
 
   ngOnInit(): void {
-
+    this.currentUserSubject = new BehaviorSubject<AuthPayloadRes>(JSON.parse(localStorage.getItem('auth') as string));
+    this.currentUser = this.currentUserSubject.asObservable();
   }
   public get currentUserValue():AuthPayloadRes {
     return this.currentUserSubject.value;
